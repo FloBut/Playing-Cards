@@ -6,16 +6,21 @@ package No_14_Playing_Cards;
 ////•	Pentru fiecare jucător din listă, se va amesteca pachetul și se va apela metoda dealHand().
 
 
+import org.w3c.dom.ls.LSException;
+
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Deck deck = new Deck();
-        Player player = new Player("Player1");
-       System.out.println(deck.shuffleDeck().size());
-        List<String> handForPlayer1 = player.dealHand(deck, 4);
-        System.out.println(player.getName());
-        System.out.println(handForPlayer1.size());
+        List<String> suit = List.of( "Clubs", "Diamonds", "Hearts", "Spades");
+        List<String> rank = List.of("ace", "two", "tree", "four", "five", "six", "seven", "eight", "nine",  "ten",
+                "Jack", "Queen", "King");
+        Deck deck = new Deck(suit, rank);
+        Player player = new Player("John");
+        deck.generateDeck();
+        deck.shuffleDeck();
+        List <String> hand = player.dealHand(deck, 3);
+        System.out.println(player + "with cards" + hand);
     }
 
 

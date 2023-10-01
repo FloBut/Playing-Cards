@@ -1,9 +1,7 @@
 package No_14_Playing_Cards;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 ///Scrie clasa Player
 ////Atribute:
@@ -22,28 +20,25 @@ public class Player {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    //scot intr-o lista apelul metodei shuffleDeck() in care ar trebui sa am pe pozitia para suit- ul si pe poz impara rank - ul;
-    //in alta lista voi salva ultimele n + n carti, adica fiecare carte cu suit-ul si pozitia ei
     public List<String> dealHand(Deck deck, int cardsNumber) {
-        List<String> dealHand = new ArrayList<>();
-        List<String>  deckCard = deck.shuffleDeck();
-        int startIndex = 52 - (2*cardsNumber);
-        for (int i = startIndex; i <deckCard.size(); i++) {
-            dealHand.add(deckCard.get(i));
+        List<String> newDealHand = new ArrayList<>();
+        List<String> deckCards = deck.getDeckCards();
+        if (cardsNumber <= deckCards.size()) {
+            int startIndex = deckCards.size() - cardsNumber;
+            int endIndex = deckCards.size();
+            newDealHand = deckCards.subList(startIndex, endIndex);
+        } else {
+            System.out.println("Give a numbers of cards less then 52");
         }
+        return newDealHand;
 
 
-        //dealHand.add(deckCard.subList(startIndex,endIndex).toString());
-        return dealHand;
+    }
 
-
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
